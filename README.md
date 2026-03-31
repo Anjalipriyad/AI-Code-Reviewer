@@ -8,7 +8,8 @@ Built as a standout demonstration of full-stack engineering, machine learning in
 
 ### 1. Security Audit Hub
 Deep, continuous scanning over repositories for Critical and High-risk vulnerabilities.
-![Security Audit](./docs/images/security.png)
+![Uploading image.png…]()
+
 
 ### 2. Fix-It Auto-Patcher & Analysis Engine
 Discovered a vulnerability? Paste your code directly or let the analyzer run. The integrated Fix-it AI engine automatically generates ready-to-merge, unified `patch.diff` payloads to resolve the issue gracefully.
