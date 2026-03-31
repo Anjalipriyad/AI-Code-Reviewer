@@ -183,16 +183,15 @@ async def analyze_code(
         )
 
     # ── Persist findings to DB ────────────────────────────────
-    reviews_saved = 0
-    if repo_id and pr_id:
-        reviews_saved = await _save_findings_to_db(
-            db=db,
-            report=report,
-            repository_id=repo_id,
-            pull_request_id=pr_id,
-            file_path=payload.file_path,
-        )
+    reviews_saved = await _save_findings_to_db(
+        db=db,
+        report=report,
+        repository_id=repo_id,
+        pull_request_id=pr_id,
+        file_path=payload.file_path,
+    )
 
+    if pr_id:
         # Mark PR as reviewed
         pr_obj = await db.get(PullRequest, pr_id)
         if pr_obj:
@@ -200,10 +199,10 @@ async def analyze_code(
             pr_obj.reviewed_at = datetime.now(timezone.utc)
             db.add(pr_obj)
 
-        logger.info(
-            "Saved %d review findings for repo=%s pr=%s",
-            reviews_saved, repo_id, pr_id,
-        )
+    logger.info(
+        "Saved %d review findings for repo=%s pr=%s",
+        reviews_saved, repo_id, pr_id,
+    )
 
     return AnalyzeResponse(
         analysis=report,
@@ -613,8 +612,8 @@ _CATEGORY_MAP = {
 async def _save_findings_to_db(
     db: AsyncSession,
     report: AnalysisReport,
-    repository_id: uuid.UUID,
-    pull_request_id: uuid.UUID,
+    repository_id: uuid.UUID | None,
+    pull_request_id: uuid.UUID | None,
     file_path: str,
 ) -> int:
     """

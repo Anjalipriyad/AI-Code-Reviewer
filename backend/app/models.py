@@ -317,16 +317,16 @@ class Review(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "reviews"
 
     # ── Foreign Keys ───────────────────────────────────────────
-    repository_id: Mapped[uuid.UUID] = mapped_column(
+    repository_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID,
         ForeignKey("repositories.id", ondelete="CASCADE"),
-        nullable=False,
+        nullable=True,
         index=True,
     )
-    pull_request_id: Mapped[uuid.UUID] = mapped_column(
+    pull_request_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID,
         ForeignKey("pull_requests.id", ondelete="CASCADE"),
-        nullable=False,
+        nullable=True,
         index=True,
     )
 

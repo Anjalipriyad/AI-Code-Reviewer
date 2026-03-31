@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { apiPost, type AnalyzeResponse, type FixPatchResponse } from "@/lib/api";
 import {
@@ -235,6 +235,17 @@ function mapSeverity(sev: string | undefined): Finding["severity"] {
 
 export default function AnalyzePage() {
   const [code, setCode] = useState(SAMPLE_CODE);
+  
+  // Persist code draft in local storage
+  useEffect(() => {
+    const saved = localStorage.getItem("analyze_code_draft");
+    if (saved) setCode(saved);
+  }, []);
+
+  const handleCodeChange = (newCode: string) => {
+    setCode(newCode);
+    localStorage.setItem("analyze_code_draft", newCode);
+  };
   const [language, setLanguage] = useState("python");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [findings, setFindings] = useState<Finding[]>([]);
@@ -258,7 +269,7 @@ export default function AnalyzePage() {
         code,
         language,
         file_path: `untitled.${language === "python" ? "py" : language === "typescript" ? "ts" : "js"}`,
-        mode: "full",
+        mode: "quick",
       });
 
       const mapped = mapApiToFindings(response.analysis);
@@ -453,7 +464,7 @@ export default function AnalyzePage() {
               language={language}
               theme="vs-dark"
               value={code}
-              onChange={(val) => setCode(val || "")}
+              onChange={(val) => handleCodeChange(val || "")}
               onMount={handleEditorMount}
               options={{
                 fontSize: 13,
