@@ -6,11 +6,25 @@ Built as a standout demonstration of full-stack engineering, machine learning in
 
 ## 🌟 Key Features
 
-*   **Security Audit Dashboard**: Deep, continuous scanning over repositories for Critical and High-risk vulnerabilities (e.g., SQL Injection, XSS, insecure cryptography).
-*   **Fix-It Auto-Patcher**: Discovered a vulnerability? The integrated Fix-it AI engine automatically generates ready-to-merge, unified `patch.diff` payloads to resolve the issue gracefully.
-*   **Complexity Heatmaps**: Visualize technical debt. Interactive, weighted treemaps identify monolithic, highly tangled files that need refactoring before they become blockers.
-*   **GitHub Integration (OAuth)**: Live synchronization. Connect your GitHub account via an active OAuth flow to allow the analyzer to automatically listen to Pull Requests and map your active repositories.
-*   **Standalone "Paste & Analyze"**: Need immediate feedback on a quick snippet without committing? Paste code directly into the browser for sub-second, persistent AST analysis.
+### 1. Security Audit Hub
+Deep, continuous scanning over repositories for Critical and High-risk vulnerabilities.
+![Security Audit](./docs/images/security.png)
+
+### 2. Fix-It Auto-Patcher & Analysis Engine
+Discovered a vulnerability? Paste your code directly or let the analyzer run. The integrated Fix-it AI engine automatically generates ready-to-merge, unified `patch.diff` payloads to resolve the issue gracefully.
+![Analyze Code](./docs/images/analyze.png)
+
+### 3. Review History Tracking
+Standalone "Paste & Analyze" or integrated GitHub scans are persisted continuously. Review your chronological findings and track mitigations.
+![History Logs](./docs/images/history.png)
+
+### 4. Complexity Heatmaps
+Visualize technical debt. Interactive, weighted treemaps identify monolithic, highly tangled files that need refactoring before they become blockers.
+![Complexity Heatmap](./docs/images/heatmap.png)
+
+### 5. Interactive Dashboard & GitHub Integrations
+Live synchronization with an overarching bird's-eye view. Connect your GitHub account via an active OAuth flow to allow the analyzer to map your active repositories.
+![Main Dashboard](./docs/images/dashboard.png)
 
 ## 🏗️ Architecture Stack
 
