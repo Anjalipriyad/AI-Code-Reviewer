@@ -8,7 +8,7 @@ Built as a standout demonstration of full-stack engineering, machine learning in
 
 ### 1. Security Audit Hub
 Deep, continuous scanning over repositories for Critical and High-risk vulnerabilities.
-![Uploading image.png…]()
+![Security Audit](./docs/images/security.png)
 
 
 ### 2. Fix-It Auto-Patcher & Analysis Engine
